@@ -19,7 +19,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           docker build -t mydockerhubuser/shopapp .
-          docker tag mydockerhubuser/shopapp mydockerhubuser/shopapp:latest
+          
           docker push mydockerhubuser/shopapp:latest
 
       - name: Deploy to EC2
