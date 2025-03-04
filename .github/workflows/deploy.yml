@@ -18,15 +18,15 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t mydockerhubuser/shopapp .
-          docker tag mydockerhubuser/shopapp mydockerhubuser/shopapp:latest
-          docker push mydockerhubuser/shopapp:latest
+          docker build -t mydockerhubuser/Shopapp .
+          docker tag mydockerhubuser/Shopapp mydockerhubuser/Shopapp:latest
+          docker push mydockerhubuser/Shopapp:latest
 
       - name: Deploy to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-          docker pull mydockerhubuser/shopapp:latest
-          docker stop shopapp || true
-          docker rm shopapp || true
-          docker run -d -p 80:3000 --name shopapp mydockerhubuser/shopapp:latest
+          docker pull mydockerhubuser/Shopapp:latest
+          docker stop Shopapp || true
+          docker rm Shopapp || true
+          docker run -d -p 80:3000 --name Shopapp mydockerhubuser/Shopapp:latest
           EOF
